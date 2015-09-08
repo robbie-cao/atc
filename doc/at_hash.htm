@@ -1,0 +1,367 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<Title>hash</Title>
+</HEAD>
+<!link rel=StyleSheet href=atparser.css>
+
+<! ----------------------------------------- define styles ------------------------------------------> 
+<style>
+   BODY  { background: white; color: black }
+   H1 	 { font: 14pt Arial bold; color: blue }
+   H2 	 { font: 12pt Arial bold; color: blue }
+   P 	 { font: 10pt Arial }
+   LI	 { font: 10pt Arial }
+   TD    { font: 10pt Arial }
+   TABLE { border: 1 solid black }
+   TD	 { border: 1 solid black; font: 9pt Ariel; color: black; vertical-align: top }
+   PRE   { font: 9pt CourierNew; background: #D3D3D3; font-weight: bold }
+</style>
+
+<BODY>
+
+<h1>AT Command Interpreter:<br>Hash Search Algorithm</h1>
+
+<p>
+<b><i>This document is a work in progress.  The information presented may not be accurate or up to date.</i></b>
+</p>
+
+<h2>
+Contents
+</h2>
+
+<ul>
+
+<li>	<a href="#overview">
+	Overview		
+	<br></a>
+
+<li>	<a href="#hash_search_principles">
+	Hash Search Principles
+	<br></a>
+
+<li>	<a href="#hash_table_structure">
+	Hash Table Structure
+	<br></a>
+
+<li>	<a href="#hash_search_rules">
+	Hash Search Rules
+	<br></a>
+
+<li>	<a href="#hash_search_example">
+	Hash Search Example
+	<br></a>
+
+</ul>
+
+<!--------------------------------------------------------- h2 ------------------------------------------------------->
+<a name=overview>
+<h2>
+Overview
+</h2>
+</a>
+
+<p>
+This page describes the algorithm used by the AT Command Parser to identify AT commands.
+</p>
+
+<p>
+Each time a command line is entered, the AT Command Parser is called to scan the line for AT commands and associated parameters, to validate parameter ranges and to call appropriate command-handler functions.  The scanning operation
+isolates <i>possible</i> AT commands, based on command-line syntax rules.  The <i>isolated</i> AT commands must be compared to a table of supported AT commands to determine whether there is a match; the table of supported AT commands is called
+the AT Command Table.
+</p>
+
+<p>
+One way to handle search the AT Command Table is to loop over all supported commands, comparing each supported command to the isolated command.  This method, while straightforward, has several disadvantages:
+</p>
+
+<ul>
+<li>It is inefficient.  An 'average' search requires <i>on the order of</i> N*M/2 comparison operations, 
+where N is the average command length (in characters) and M is the number of possible commands.  Assuming N=4 and M=100 (representative of our current AT command set), approximately 200 comparisons are required for an average
+search.
+<li>Commands can be "concatenated", in some instances without any special delimiter characters.  For example the search engine must be able to identify two separate commands, "E" and "V", in the command line "ATEV".  Therefore it is not
+possible to simply isolate a possible command.
+<li>Commands can "aliased" by other commands.  For example, the search engine must be able to distinguish "AT*" from "AT*XXX".  Again, isolating a possible command is not a simple matter. 
+</ul>
+
+<p>
+The AT Command Parser employs a hash algorithm to quickly search the table of allowed commands.  The 
+isolation of the command is integral to the hash algorithm.  
+</p>
+
+<p>
+The hash algorithm is efficient; the
+number of comparison operations is <i>on the order of</i>
+2*N.  For our representative command set, this reduces
+the number of comparisons to 8, a 25:1 reduction in processing time! 
+</p>
+ 
+<!--------------------------------------------------------- h2 ------------------------------------------------------->
+<a name=hash_search_principles>
+<h2>
+Hash Search Principles
+</h2>
+</a>
+<p>
+The following simple set of AT commands, comprising the AT Command Table, is useful for demonstrating the principles of the 
+search algorithm:
+</p>
+
+<pre>
+
+    ATA
+    ATAA
+    ATABCD
+    ATABEF
+    ATB
+
+</pre>
+<p>
+<b>Notes:</b> 
+<ol>
+<li>The structure of the hash table requires that the command set be sorted alphabetically.  However when defining
+commands for the <a href=atgen>AT Command Generator Tool</a>, the commands may be entered in arbitrary order.
+<li>The <b>AT</b> is always stripped from the command prior to a search.
+<li>The search is not case sensitive; <b>ATA</b> is the same as <b>ata</b> and the same as <b>aTa</b>, and so on.
+</ol>
+</p>
+
+<p>
+This AT Command Table can be described by the following topology:
+</p>
+
+<pre>
+
+    >--+--A--+----------------------->  "A"
+       |     |                  
+       |     +--A-------------------->  "AA"
+       |     |                
+       |     +--B--+--C--+--D-------->  "ABCD"
+       |                 |
+       |                 +--E--+--F-->  "ABEF"
+       |
+       +--B-------------------------->  "B"
+
+</pre>
+
+<p>
+A search begins at the left-hand side of the map, and with the first character of the isolated command.  
+At each node in the map (shown by <b>+</b>) a single-character comparison is made.  If a character match is
+found the search continues along the associated path.  If no character match is found the search terminates
+with a 'not-found' result.
+ </p>
+
+<!--------------------------------------------------------- h2 ------------------------------------------------------->
+<a name=hash_table_structure>
+<h2>
+Hash Table Structure
+</h2>
+</a>
+
+<p>
+The hash table is implemented as an array of <i>hash blocks:</i>
+</p>
+
+<pre>
+const AT_HashBlk_t atHashTbl [] = {
+    <i>hash-block-0,</i>
+    <i>hash-block-1,</i>
+    <i>hash-block-2,</i>
+    <i>.</i>
+    <i>.</i>
+    <i>.</i>
+    <i>hash-entry-n</i>
+} ;
+</pre>
+
+<p>
+AT_HashBlk_t is a structure comprising two integers:
+</p>
+<pre>
+typedef struct {
+    UInt16 firstRow ;
+    UInt16 nextBlock ; 
+}   AT_HashBlk_t ;
+</pre>
+
+<p>
+The <b>firstRow</b> element is an index to the alphabetically-sorted list of commands.  
+</p>
+
+<p>
+The <b>nextBlock</b> element is an index to the hash-table array itself.  <a name=high_order_bit></a>The high-order bit of <b>nextBlock</b>
+is reserved as a flag bit.  This leaves the remaining 15 bits for indexing; therefore up to 2^15, or 32768 commands may be stored. 
+</p>
+
+<p>The symbol AT_ENDHASH is used to described bit 15 of nextBlock.  Its use is described below.
+</p>
+<p><i>
+In practice the number of AT commands will most likely never exceed the 15-bit limit.  If more
+than 2^15 commands are required, firstRow and nextBlock can easily be increased to 32 bits.
+</i></p>
+
+<p>Using the <a href="#hypothetical_command_set">sample command set</a>, the following code is generated:
+</p>
+
+<pre>
+const AT_HashBlk_t atHashTbl [] = {
+	{ 0, 4 } ,
+	{ 0, 0 } ,				//	AA
+	{ 1, 2 | AT_ENDHASH } ,
+	{ 1, 0 } ,				//	ABB
+	{ 2, 0 | AT_ENDHASH } ,		//	ABC
+	{ 3, 3 | AT_ENDHASH } ,
+	{ 3, 2 | AT_ENDHASH } ,
+	{ 3, 0 } ,				//	XCC
+	{ 4, 0 | AT_ENDHASH } ,		//	XCD
+} ;
+</pre>
+
+<p>
+AT_ENDHASH is set to the high-order bit of nextBlock; its use will be desribed shortly.
+</p>
+
+<!--------------------------------------------------------- h2 ------------------------------------------------------->
+<a name=hash_search_rules>
+<h2>
+Hash Search Rules
+</h2>
+</a>
+
+<p>
+The following table summarizes the rules for searching the hash table.  
+</p>
+<ul>
+<li><b>FLG=1?</b>indicates whether the <a href="#NONAME">bit-15 flag</a> in nextBlock is set.
+<li><b>IDX=0?</b>indicates whether the index field (bits 14:0) of nextBlock are non-zero.
+<li><b>Match?</b>indicates whether the characters at the current character position match.
+<li><b>charIdx</b>is the index of the character being matched.
+<li><b>hashIdx</b>is the index of the entry in the hash table.
+</ul>
+
+<table cellspacing=0 cellpadding=5>
+
+<tr class=fixed align=center>
+	<td class=fixed>Case<td class=fixed>FLG=1?<td class=fixed>IDX>0?<td class=fixed>Match?<td class=fixed>Action
+</tr>
+
+<tr class=fixed align=center>
+	<td class=fixed>0 <td class=fixed>F <td class=fixed>F <td class=fixed>F 
+
+	<td class=fixed align=left>
+		<ol>
+		<li>Increment hashIdx by 1+IDX
+		<li>If hashIdx>hashTableLen terminate
+		<li>Continue
+		</ol>	
+	</td>
+</tr>
+
+<tr class=fixed align=center>
+	<td class=fixed>1 <td class=fixed>F <td class=fixed>F <td class=fixed>T 
+	
+	<td class=fixed align=left>	
+		<ol>
+		<li>Mark this command as a match<sup>*</sup>
+		<li>Increment hashIdx 
+		<li>If hashIdx>hashTableLen terminate
+		<li>Increment charIdx
+		<li>If charIdx>testCmdLen terminate
+		<li>Continue
+		</ol>	
+	</td>
+</tr>
+
+<tr class=fixed align=center>
+	<td class=fixed>2 <td class=fixed>F <td class=fixed>T <td class=fixed>F 
+	
+	<td class=fixed align=left>	
+		<ol>
+		<li>Increment hashIdx by 1+IDX
+		<li>If hashIdx>hashTableLen terminate
+		<li>Continue
+		</ol>	
+	</td>
+</tr>
+
+<tr class=fixed align=center>
+	<td class=fixed>3 <td class=fixed>F <td class=fixed>T <td class=fixed>T 		
+	
+	<td class=fixed align=left>	
+		<ol>
+		<li>Increment hashIdx 
+		<li>If hashIdx>hashTableLen terminate
+		<li>Increment charIdx
+		<li>If charIdx>testCmdLen terminate
+		<li>Continue
+		</ol>	
+	</td>
+</tr>
+
+<tr class=fixed align=center>
+	<td class=fixed>4 <td class=fixed>T <td class=fixed>F <td class=fixed>F	
+
+	<td class=fixed align=left>	
+		<ol>
+		<li>Terminate
+		</ol>	
+	</td>
+</tr>
+
+<tr class=fixed align=center>
+	<td class=fixed>5 <td class=fixed>T <td class=fixed>F <td class=fixed>T	
+	
+	<td class=fixed align=left>	
+		<ol>
+		<li>Mark this command as a match<sup>*</sup>
+		<li>Terminate
+		</ol>	
+	</td>
+</tr>
+
+<tr class=fixed align=center>
+	<td class=fixed>6	<td class=fixed>T <td class=fixed>T <td class=fixed>F
+
+	<td class=fixed align=left>	
+		<ol>
+		<li>Increment hashIdx by 1+IDX
+		<li>If hashIdx>hashTableLen terminate
+		<li>Continue search
+		</ol>	
+	</td>
+</tr>
+
+<tr class=fixed align=center>
+	<td class=fixed>7	<td class=fixed>T	<td class=fixed>T <td class=fixed>T	
+
+	<td class=fixed align=left>	
+		<ol>
+		<li>Increment hashIdx by 1
+		<li>If hashIdx>hashTableLen terminate
+		<li>Increment charIdx
+		<li>If charIdx>testCmdLen terminate
+		<li>Continue search
+		</ol>	
+	</td>
+</tr>
+
+</table>
+
+<p>
+<sup>*</sup>On termination, the <i>last</i> command marked as a match is returned as the match result.
+If no command was marked as a match, the algorithm will indicate that no match was found.
+</p>
+<!--------------------------------------------------------- h2 ------------------------------------------------------->
+<a name=hash_search_example>
+<h2>
+Hash Search Example
+</h2>
+</a>
+
+<p>
+<i><b>This section is TBD</b></i>.  
+</p>
+
+</BODY>
+</span>
+</HTML>

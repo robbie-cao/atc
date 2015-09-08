@@ -1,0 +1,2022 @@
+
+//-----------------------------------------------------------------------------
+//	at_cmd.tbl - AT Command Table
+//
+//	As part of the target build procedure this file is scanned by the  
+//	at_gen.exe utility.  Using this information at_gen.exe generates C source  
+//	code comprising runtime AT command interpreter and dispatch tables.  The 
+//	generated C code is then compiled and linked into the target.
+//
+//-----------------------------------------------------------------------------
+
+*:			cmdId		=	AT_CMD_STAR,
+			cmdType		=	special,
+			minParms	=	0,
+			maxParms	=	0,
+			handler		=	ATCmd_STAR_Handler,
+			options		=	NO_PIN
+
+&C:			cmdId		=	AT_CMD_AND_C,
+			cmdType		=	basic,
+			minParms	=	0,
+			maxParms	=	1,
+			validParms  =   (1),
+			handler		=	ATCmd_AND_C_Handler,
+			options		=	NO_PIN
+
+&D:			cmdId		=	AT_CMD_AND_D,
+			cmdType		=	basic,
+			minParms	=	0,
+			maxParms	=	1,
+			validParms	=	(0-2),
+			handler		=	ATCmd_AND_D_Handler,
+			options		=	NO_PIN
+
+&F:			cmdId		=	AT_CMD_AND_F,
+			cmdType		=	basic,
+			minParms	=	0,
+			maxParms	=	1,
+			validParms	=	(0),
+			handler		=	ATCmd_AND_F_Handler,
+			options		=	NO_PIN
+
+&W:			cmdId		=	AT_CMD_AND_W,
+			cmdType		=	basic,
+			minParms	=	0,
+			maxParms	=	0,
+			handler		=	ATCmd_AND_W_Handler
+
+A:			cmdId		=	AT_CMD_A,
+			cmdType		=	special,
+			minParms	=	0,
+			maxParms	=	1,
+			handler		=	ATCmd_A_Handler
+
+D:			cmdId		=	AT_CMD_D,
+			cmdType		=	special,
+			minParms	=	1,
+			maxParms	=	1,
+			handler		=	ATCmd_D_Handler,
+			options		=	NO_PIN
+
+E:			cmdId		=	AT_CMD_E,
+			cmdType		=	basic,
+			minParms	=	0,
+			maxParms	=	1,
+			validParms	=	(0,1),
+			handler		=	ATCmd_E_Handler,
+			options		=	NO_PIN
+
+H:			cmdId		=	AT_CMD_H,
+			cmdType		=	special,	// ignore extra chars after ath
+			minParms	=	0,
+			maxParms	=	1,
+			handler		=	ATCmd_H_Handler,
+			options		=	NO_PIN
+
+I:			cmdId		=	AT_CMD_I,
+			cmdType		=	basic,
+			minParms	=	0,
+			maxParms	=	1,
+			validParms	=	(1-8),
+			handler		=	ATCmd_I_Handler,
+			options		=	NO_PIN
+
+L:			cmdId		=	AT_CMD_L,
+			cmdType		=	basic,
+			minParms	=	0,
+			maxParms	=	1,
+			validParms	=	(0-8),
+			handler		=	ATCmd_L_Handler,
+			options		=	NO_PIN
+
+M:			cmdId		=	AT_CMD_M,
+			cmdType		=	basic,
+			minParms	=	0,
+			maxParms	=	1,
+			validParms	=	(0-3),
+			handler		=	ATCmd_M_Handler,
+			options		=	NO_PIN
+
+O:			cmdId		=	AT_CMD_O,
+			cmdType		=	basic,
+			minParms	=	0,
+			maxParms	=	1,
+			validParms	=	(0),
+			handler		=	ATCmd_O_Handler
+
+P:			cmdId		=	AT_CMD_P,
+			cmdType		=	basic,
+			minParms	=	0,
+			maxParms	=	1,
+			validParms  =	(0,1),
+			handler		=	ATCmd_P_Handler,
+			options		=	NO_PIN
+
+Q:			cmdId		=	AT_CMD_Q,
+			cmdType		=	basic,
+			minParms	=	0,
+			maxParms	=	1,
+			validParms	=	(0,1),
+			handler		=	ATCmd_Q_Handler,
+			options		=	NO_PIN
+
+S0:			cmdId		=	AT_CMD_S0,
+			cmdType		=	basic,
+			minParms	=	1,
+			maxParms	=	1,
+			validParms	=	(0-7),
+			handler		=	ATCmd_S0_Handler,
+			options		=	NO_PIN
+
+S3:			cmdId		=	AT_CMD_S3,
+			cmdType		=	basic,
+			minParms	=	1,
+			maxParms	=	1,
+			validParms	=	(13),
+			handler		=	ATCmd_S3_Handler,
+			options		=	NO_PIN
+
+S4:			cmdId		=	AT_CMD_S4,
+			cmdType		=	basic,
+			minParms	=	1,
+			maxParms	=	1,
+			validParms	=	(10),
+			handler		=	ATCmd_S4_Handler,
+			options		=	NO_PIN
+
+S5:			cmdId		=	AT_CMD_S5,
+			cmdType		=	basic,
+			minParms	=	1,
+			maxParms	=	1,
+			validParms	=	(8),
+			handler		=	ATCmd_S5_Handler,
+			options		=	NO_PIN
+
+S6:			cmdId		=	AT_CMD_S6,
+			cmdType		=	basic,
+			minParms	=	1,
+			maxParms	=	1,
+			validParms	=	(2-255),
+			handler		=	ATCmd_S6_Handler,
+			options		=	NO_PIN
+
+S7:			cmdId		=	AT_CMD_S7,
+			cmdType		=	basic,
+			minParms	=	1,
+			maxParms	=	1,
+			validParms	=	(0-255),
+			handler		=	ATCmd_S7_Handler,
+			options		=	NO_PIN
+
+S8:			cmdId		=	AT_CMD_S8,
+			cmdType		=	basic,
+			minParms	=	1,
+			maxParms	=	1,
+			validParms	=	(1-255),
+			handler		=	ATCmd_S8_Handler,
+			options		=	NO_PIN
+
+S10:		cmdId		=	AT_CMD_S10,
+			cmdType		=	basic,
+			minParms	=	1,
+			maxParms	=	1,
+			validParms	=	(1-254),
+			handler		=	ATCmd_S10_Handler,
+			options		=	NO_PIN
+
+T:			cmdId		=	AT_CMD_T,
+			cmdType		=	basic,
+			minParms	=	0,
+			maxParms	=	0,
+			handler		=	ATCmd_T_Handler,
+			options		=	NO_PIN
+
+V:			cmdId		=	AT_CMD_V,
+			cmdType		=	basic,
+			minParms	=	0,
+			maxParms	=	1,
+			validParms	=	(0,1),
+			handler		=	ATCmd_V_Handler,
+			options		=	NO_PIN
+
+X:			cmdId		=	AT_CMD_X,
+			cmdType		=	basic,
+			minParms	=	0,
+			maxParms	=	1,
+			handler		=	ATCmd_X_Handler,
+			options		=	NO_PIN | NO_PWR
+
+Z:			cmdId		=	AT_CMD_Z,
+			cmdType		=	basic,
+			minParms	=	0,
+			maxParms	=	0,
+			handler		=	ATCmd_Z_Handler,
+			options		=	NO_PIN
+
++CBST:		cmdId		=	AT_CMD_CBST,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	3,
+#ifdef STACK_wedge
+			validParms	=	(0,7,16,71,82,83,84,115,116,120,121,130,131,133,134),(0,1),(0,1),
+#else
+			validParms	=	(0,7,12,14,15,16,39,43,47,48,49,50,51,71,75,79,80,81),(0),(0,1),
+#endif
+			handler		=	ATCmd_CBST_Handler,
+			options		=	NO_PIN
+
++CGMI:		cmdId		=	AT_CMD_CGMI,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	0,
+			handler		=	ATCmd_CGMI_Handler,
+			options		=	NO_PIN | NO_PWR
+
++GMI:		cmdId		=	AT_CMD_GMI,				//	alias of +CGMI
+			alias		=	AT_CMD_CGMI
+
++FMI?:		cmdId		=	AT_CMD_FMI,				//	alias of +CGMI
+			alias		=	AT_CMD_CGMI
+
++FMFR?:		cmdId		=	AT_CMD_FMFR,			//	alias of +CGMI
+			alias		=	AT_CMD_CGMI
+
++CGMM:		cmdId		=	AT_CMD_CGMM,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	0,
+			handler		=	ATCmd_CGMM_Handler,
+			options		=	NO_PIN | NO_PWR
+
++GMM:		cmdId		=	AT_CMD_GMM,				//	alias of +CGMM
+			alias		=	AT_CMD_CGMM
+
++FMM?:		cmdId		=	AT_CMD_FMM,				//	alias of +CGMM
+			alias		=	AT_CMD_CGMM
+
++FMDL?:		cmdId		=	AT_CMD_FMDL,			//	alias of +CGMM
+			alias		=	AT_CMD_CGMM
+
++CGMR:		cmdId		=	AT_CMD_CGMR,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	0,
+			handler		=	ATCmd_CGMR_Handler,
+			options		=	NO_PIN | NO_PWR
+
++GMR:		cmdId		=	AT_CMD_GMR,				//	alias of +CGMR
+			alias		=	AT_CMD_CGMR
+
++FMR?:		cmdId		=	AT_CMD_FMR,				//	alias of +CGMR
+			alias		=	AT_CMD_CGMR
+
++FREV?:		cmdId		=	AT_CMD_FREV,			//	alias of +CGMR
+			alias		=	AT_CMD_CGMR
+
++CGSN:		cmdId		=	AT_CMD_CGSN,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	0,
+			handler		=	ATCmd_CGSN_Handler,
+			options		=	NO_PIN | NO_PWR
+
++CIMI:		cmdId		=	AT_CMD_CIMI,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	0,
+			handler		=	ATCmd_CIMI_Handler,
+			options		= 	USER_DEFINED_TEST_RSP
+
++CKPD:		cmdId		=	AT_CMD_CKPD,
+			cmdType		=	extended,
+			minParms	=	1,
+			maxParms	=	3,
+			validParms	=	(?),(0-255),(0-255),
+			handler		=	ATCmd_CKPD_Handler,
+			options		=	NO_PIN | USER_DEFINED_TEST_RSP | WAIT_PIN_INIT
+
++CMEE:		cmdId		=	AT_CMD_CMEE,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	1,
+			validParms	=	(0-2),
+			handler		=	ATCmd_CMEE_Handler,
+			options		=	NO_PIN
+
++CNUM:		cmdId		=	AT_CMD_CNUM,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	0,
+			handler		=	ATCmd_CNUM_Handler,
+			options		=	USER_DEFINED_TEST_RSP
+
++CPOL:		cmdId		=	AT_CMD_CPOL,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	3,
+			validParms	=	(?),(0-2),(?),
+			handler		=	ATCmd_CPOL_Handler,
+			options		= 	USER_DEFINED_TEST_RSP
+
++COPN:		cmdId		=	AT_CMD_COPN,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	0,
+			handler		=	ATCmd_COPN_Handler
+
++COPS:		cmdId		=	AT_CMD_COPS,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	3,
+			validParms	=	(0-4),(0-2),(?),
+			handler		=	ATCmd_COPS_Handler,
+			options		= 	USER_DEFINED_TEST_RSP
+
+
++CPAS:		cmdId		=	AT_CMD_CPAS,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	0,
+			validParms	=	(0,3,4),
+			handler		=	ATCmd_CPAS_Handler,
+			options		=	NO_PIN | NO_PWR
+
++CCLK:		cmdId		=	AT_CMD_CCLK,
+			cmdType		=	extended,
+			minParms	=	1,
+			maxParms	=	1,
+			validParms	=	(?),
+			handler		=	ATCmd_CCLK_Handler,
+			options		= 	USER_DEFINED_TEST_RSP
+
++CPBF:		cmdId		=	AT_CMD_CPBF,
+			cmdType		=	extended,
+			minParms	=	1,
+			maxParms	=	1,
+			validParms	=	(?),
+			handler		=	ATCmd_CPBF_Handler,
+			options		= 	USER_DEFINED_TEST_RSP
+
++CPBR:		cmdId		=	AT_CMD_CPBR,
+			cmdType		=	extended,
+			minParms	=	1,
+			maxParms	=	2,
+			handler		=	ATCmd_CPBR_Handler,
+			options		= 	NO_PIN|USER_DEFINED_TEST_RSP
+
++CPBS:		cmdId		=	AT_CMD_CPBS,
+			cmdType		=	extended,
+			minParms	=	1,
+			maxParms	=	1,
+			validParms	=	(?),
+			handler		=	ATCmd_CPBS_Handler,
+			options		= 	NO_PIN|USER_DEFINED_TEST_RSP
+
++CPBW:		cmdId		=	AT_CMD_CPBW,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	4,
+			validParms	=	(?),(?),(128,129,145),(?),
+			handler		=	ATCmd_CPBW_Handler,
+			options		= 	USER_DEFINED_TEST_RSP
+
++CR:		cmdId		=	AT_CMD_CR,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	1,
+			validParms	=	(0,1),
+			handler		=	ATCmd_CR_Handler
+
++CRC:		cmdId		=	AT_CMD_CRC,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	1,
+			validParms	=	(0,1),
+			handler		=	ATCmd_CRC_Handler
+
++CREG:		cmdId		=	AT_CMD_CREG,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	1,
+			validParms	=	(0-2),
+			handler		=	ATCmd_CREG_Handler,
+			options		=	NO_PIN | NO_PWR
+
++CRLP:		cmdId		=	AT_CMD_CRLP,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	6,
+			validParms	=	(0-496),(0-496),(38-255),(0-8),(0,1,2),(0-20),
+			handler		=	ATCmd_CRLP_Handler,
+			options		=	NO_PIN
+
++CSCA:		cmdId		=	AT_CMD_CSCA,
+			cmdType		=	extended,
+			minParms	=	1,
+			maxParms	=	2,
+			validParms	=	(?),(128,129,145,161),
+			handler		=	ATCmd_CSCA_Handler
+
++CSTA:		cmdId		=	AT_CMD_CSTA,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	1,
+			validParms	=	(128,129,145),
+			handler		=	ATCmd_CSTA_Handler
+
++ICF:		cmdId		=	AT_CMD_ICF,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	2,
+			validParms	=	(3),(3),
+			handler		=	ATCmd_ICF_Handler,
+			options		=	NO_PIN
+
++IFC:		cmdId		=	AT_CMD_IFC,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	2,
+			validParms	=	(0-2),(0-2),
+			handler		=	ATCmd_IFC_Handler,
+			options		=	NO_PIN
+
++IPR:		cmdId		=	AT_CMD_IPR,
+			cmdType		=	extended,
+			minParms	=	1,
+			maxParms	=	1,
+			handler		=	ATCmd_IPR_Handler,
+			options		=	NO_PIN
+
++CEER:		cmdId		=	AT_CMD_CEER,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	0,
+			handler		=	ATCmd_CEER_Handler
+
++CLIP:		cmdId		=	AT_CMD_CLIP,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	1,
+			validParms	=	(0,1),
+			handler		=	ATCmd_CLIP_Handler
+
++CLIR:		cmdId		=	AT_CMD_CLIR,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	1,
+			validParms	=	(0,1,2),
+			handler		=	ATCmd_CLIR_Handler
+
++COLP:		cmdId		=	AT_CMD_COLP,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	1,
+			validParms	=	(0,1),
+			handler		=	ATCmd_COLP_Handler
+			
++CAOC:		cmdId		=	AT_CMD_CAOC,
+			cmdType		=	extended,
+			minParms	=	1,
+			maxParms	=	1,
+			validParms	=	(0,1,2),
+			handler		=	ATCmd_CAOC_Handler
+
++CACM:		cmdId		=	AT_CMD_CACM,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	1,
+			validParms	=	(?),
+			handler		=	ATCmd_CACM_Handler,
+			options		= 	USER_DEFINED_TEST_RSP
+
++CAMM:		cmdId		=	AT_CMD_CAMM,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	2,
+			validParms	=	(?),(?),
+			handler		=	ATCmd_CAMM_Handler,
+			options		= 	USER_DEFINED_TEST_RSP
+
++CPUC:		cmdId		=	AT_CMD_CPUC,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	3,
+			validParms	=	(?),(?),(?),
+			handler		=	ATCmd_CPUC_Handler,
+			options		= 	USER_DEFINED_TEST_RSP
+
++CCWE:		cmdId		=	AT_CMD_CCWE,
+			cmdType		=	extended,
+			minParms	=	1,
+			maxParms	=	1,
+			validParms	=	(0,1),
+			handler		=	ATCmd_CCWE_Handler
+
++CMGD:		cmdId		=	AT_CMD_CMGD,
+			cmdType		=	extended,
+			minParms	=	1,
+			maxParms	=	2,
+			validParms	=	(?),(?),
+			handler		=	ATCmd_CMGD_Handler,
+			options		= 	USER_DEFINED_TEST_RSP
+
++CMGF:		cmdId		=	AT_CMD_CMGF,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	1,
+			validParms	=	(0,1),
+			handler		=	ATCmd_CMGF_Handler
+
++CMGR:		cmdId		=	AT_CMD_CMGR,
+			cmdType		=	extended,
+			minParms	=	1,
+			maxParms	=	1,
+			validParms	=	(0-255),
+			handler		=	ATCmd_CMGR_Handler,
+			options		= 	USER_DEFINED_TEST_RSP
+
++CMGS:		cmdId		=	AT_CMD_CMGS,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	3,
+			validParms	=	(?),(?),(?),
+			handler		=	ATCmd_CMGS_Handler
+
++CNMA:		cmdId		=	AT_CMD_CNMA,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	0,
+			handler		=	ATCmd_CNMA_Handler
+
++CNMI:		cmdId		=	AT_CMD_CNMI,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	5,
+			validParms	=	(2),(0-3),(0-3),(0-2),(0,1),
+			handler		=	ATCmd_CNMI_Handler
+
++CPMS:		cmdId		=	AT_CMD_CPMS,
+			cmdType		=	extended,
+			minParms	=	1,
+			maxParms	=	3,
+			validParms	=	("SM","ME","BM","SR"),("SM"),("SM"),
+			handler		=	ATCmd_CPMS_Handler,
+			options		= 	USER_DEFINED_TEST_RSP
+
++CSCS:		cmdId		=	AT_CMD_CSCS,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	1,
+//			validParms	=	(\"IRA\",\"GSM\",\"PCCP437\",\"8859-1\",\"8859-2\",\"8859-3\",\"8859-4\",\"8859-5\",\"8859-6\"),
+			validParms	=	("IRA","GSM","UCS2","PCCP437","8859-1","8859-2","8859-3","8859-4","8859-5","8859-6"),
+			handler		=	ATCmd_CSCS_Handler,
+			options		=	NO_PIN|USER_DEFINED_TEST_RSP
+
++CSDH:		cmdId		=	AT_CMD_CSDH,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	1,
+			validParms	=	(0,1),
+			handler		=	ATCmd_CSDH_Handler
+
++CSMP:		cmdId		=	AT_CMD_CSMP,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	4,
+			validParms	=	(0-255),(0-255),(0-255),(0-255),
+			handler		=	ATCmd_CSMP_Handler,
+			options		= 	USER_DEFINED_TEST_RSP
+
++CSMS:		cmdId		=	AT_CMD_CSMS,
+			cmdType		=	extended,
+			minParms	=	1,
+			maxParms	=	1,
+			validParms	=	(0,1),
+			handler		=	ATCmd_CSMS_Handler
+
+*MSMS:		cmdId		=	AT_CMD_MSMS,
+			cmdType		=	extended,
+			minParms	=	1,
+			maxParms	=	1,
+			validParms	=	(0,1),
+			handler		=	ATCmd_MSMS_Handler
+
+*MSTK:		cmdId		=	AT_CMD_MSTK,
+			cmdType		=	extended,
+			minParms	=	1,
+			maxParms	=	1,
+			validParms	=	(0,1),
+			handler		=	ATCmd_MSTK_Handler
+
++CSQ:		cmdId		=	AT_CMD_CSQ,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	0,
+			handler		=	ATCmd_CSQ_Handler,
+			options		=	NO_PIN
+
+*MCSQ:		cmdId		=	AT_CMD_MCSQ,
+			cmdType		=	extended,
+			minParms	=	1,
+			maxParms	=	1,
+			handler		=	ATCmd_MCSQ_Handler,
+			options		=	NO_PIN
+
++ILRR:		cmdId		=	AT_CMD_ILRR,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	1,
+			validParms	=	(0,1),
+			handler		=	ATCmd_ILRR_Handler,
+			options		=	NO_PIN
+
++CCFC:		cmdId		=	AT_CMD_CCFC,
+			cmdType		=	extended,
+			minParms	=	2,
+			maxParms	=	8,
+			validParms	=	(0-5),(0-4),(?),(128,129,145),(0-255),(?),(?),(1-30),
+			handler		=	ATCmd_CCFC_Handler
+
++CCWA:		cmdId		=	AT_CMD_CCWA,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	3,
+			validParms	=	(0,1),(0-2),(0-255),
+			handler		=	ATCmd_CCWA_Handler
+
++CFUN:		cmdId		=	AT_CMD_CFUN,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	2,
+			validParms	=	(0-7),(0,1),
+			handler		=	ATCmd_CFUN_Handler,
+			options		=	NO_PIN | NO_PWR
+
++CPIN:		cmdId		=	AT_CMD_CPIN,
+			cmdType		=	extended,
+			minParms	=	1,
+			maxParms	=	2,
+			validParms	=	(?),(?),
+			handler		=	ATCmd_CPIN_Handler,
+			options		=	NO_PIN | USER_DEFINED_TEST_RSP | WAIT_PIN_INIT
+
++CLCK:		cmdId		=	AT_CMD_CLCK,
+			cmdType		=	extended,
+			minParms	=	2,
+			maxParms	=	4,
+			validParms	=	(?),(0-2,10),(?),(0-255),
+			handler		=	ATCmd_CLCK_Handler,
+			options		= 	USER_DEFINED_TEST_RSP
+
++CPWD:		cmdId		=	AT_CMD_CPWD,
+			cmdType		=	extended,
+			minParms	=	3,
+			maxParms	=	4,
+			validParms	=	(?),(?),(?),(?),
+			handler		=	ATCmd_CPWD_Handler,
+			options		= 	USER_DEFINED_TEST_RSP
+
++CMAR:		cmdId		=	AT_CMD_CMAR,
+			cmdType		=	extended,
+			minParms	=	1,
+			maxParms	=	1,
+			validParms	=	(?),
+			handler		=	ATCmd_CMAR_Handler,
+			options		= 	USER_DEFINED_TEST_RSP
+
++CSIM:		cmdId		=	AT_CMD_CSIM,
+			cmdType		=	extended,
+			minParms	=	2,
+			maxParms	=	2,
+			validParms	=	(10-516),(?),
+			handler		=	ATCmd_CSIM_Handler,
+			options		=	NO_PIN | USER_DEFINED_TEST_RSP
+
+*MECSIM:	cmdId		=	AT_CMD_MECSIM,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	0,
+			handler		=	ATCmd_MECSIM_Handler,
+			options		=	NO_PIN | USER_DEFINED_TEST_RSP | WAIT_PIN_INIT
+
++CRSM:		cmdId		=	AT_CMD_CRSM,
+			cmdType		=	extended,
+			minParms	=	1,
+			maxParms	=	7,
+			validParms	=	(176,178,192,214,220,242),(?),(?),(?),(?),(?),(?),
+			handler		=	ATCmd_CRSM_Handler,
+			options		=	NO_PIN | USER_DEFINED_TEST_RSP | WAIT_PIN_INIT
+
++CRES:		cmdId		=	AT_CMD_CRES,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	1,
+			validParms	=	(0-255),
+			handler		=	ATCmd_CRES_Handler
+
++CSAS:		cmdId		=	AT_CMD_CSAS,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	1,
+			validParms	=	(0-255),
+			handler		=	ATCmd_CSAS_Handler
+
++CMGL:		cmdId		=	AT_CMD_CMGL,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	1,
+			validParms	=	(?),
+			handler		=	ATCmd_CMGL_Handler,
+			options		= 	USER_DEFINED_TEST_RSP
+
++CSCB:		cmdId		=	AT_CMD_CSCB,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	3,
+			validParms	=	(0-2),(?),(?),
+			handler		=	ATCmd_CSCB_Handler
+
++CMSS:		cmdId		=	AT_CMD_CMSS,
+			cmdType		=	extended,
+			minParms	=	1,
+			maxParms	=	3,
+			validParms	=	(0-255),(?),(?),
+			handler		=	ATCmd_CMSS_Handler
+
++CMGW:		cmdId		=	AT_CMD_CMGW,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	3,
+			validParms	=	(?),(?),(0-255),
+			handler		=	ATCmd_CMGW_Handler
+
++FCLASS:	cmdId		=	AT_CMD_FCLASS,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	1,
+			validParms	=	(?),
+			handler		=	ATCmd_FCLASS_Handler,
+			options		= 	USER_DEFINED_TEST_RSP
+
++FAA:		cmdId		=	AT_CMD_FAA,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	1,
+			validParms	=	(0),
+			handler		=	ATCmd_FAA_Handler
+
++FAP:		cmdId		=	AT_CMD_FAP,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	3,
+			validParms	=	(0),(0),(0),
+			handler		=	ATCmd_FAP_Handler
+
++FBO:		cmdId		=	AT_CMD_FBO,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	1,
+			validParms	=	(0),
+			handler		=	ATCmd_FBO_Handler
+
++FBOR:		cmdId		=	AT_CMD_FBOR,		//	alias of +FBO
+			alias		=	AT_CMD_FBO
+
+
++FBU:		cmdId		=	AT_CMD_FBU,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	1,
+			validParms	=	(0),
+			handler		=	ATCmd_FBU_Handler
+
++FBUG:		cmdId		=	AT_CMD_FBUG,		//	alias of +FBU
+			alias		=	AT_CMD_FBU
+
++FCQ:		cmdId		=	AT_CMD_FCQ,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	2,
+			validParms	=	(0-2),(0),
+			handler		=	ATCmd_FCQ_Handler
+
++FCC:		cmdId		=	AT_CMD_FCC,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	8,
+			validParms	=	(0,1),(3),(0),(0),(0),(0),(0),(0-7),
+			handler		=	ATCmd_FCC_Handler
+
++FDCC:		cmdId		=	AT_CMD_FDCC,		//	alias of +FCC
+			alias		=	AT_CMD_FCC
+
++FCS:		cmdId		=	AT_CMD_FCS,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	0,
+			handler		=	ATCmd_FCS_Handler
+
++FDCS:		cmdId		=	AT_CMD_FDCS,		//	alias of +FCS
+			alias		=	AT_CMD_FCS
+
++FDR:		cmdId		=	AT_CMD_FDR,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	1,
+			validParms	=	(?),
+			handler		=	ATCmd_FDR_Handler
+
++FDT:		cmdId		=	AT_CMD_FDT,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	4,
+			validParms	=	(0-3),(0,1),(0-4),(0-2),
+			handler		=	ATCmd_FDT_Handler
+
++FEA:		cmdId		=	AT_CMD_FEA,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	1,
+			validParms	=	(0,1),
+			handler		=	ATCmd_FEA_Handler
+
++FREL:		cmdId		=	AT_CMD_FREL,		//	alias of +FEA
+			alias		=	AT_CMD_FEA
+
++FET:		cmdId		=	AT_CMD_FET,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	4,
+			validParms	=	(0-15),(?),(?),(?),
+			handler		=	ATCmd_FET_Handler
+
++FFC:		cmdId		=	AT_CMD_FFC,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	4,
+			validParms	=	(0),(0),(0),(0),
+			handler		=	ATCmd_FFC_Handler
+
++FIE:		cmdId		=	AT_CMD_FIE,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	1,
+			validParms	=	(0,1),
+			handler		=	ATCmd_FIE_Handler
+
++FIP:		cmdId		=	AT_CMD_FIP,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	1,
+			validParms	=	(0,2),
+			handler		=	ATCmd_FIP_Handler
+
++FIS:		cmdId		=	AT_CMD_FIS,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	8,
+			validParms	=	(0,1),(3),(0),(0),(0),(0),(0),(0-7),
+			handler		=	ATCmd_FIS_Handler
+
++FDIS:		cmdId		=	AT_CMD_FDIS,		//	alias of +FIS
+			alias		=	AT_CMD_FIS
+
++FIT:		cmdId		=	AT_CMD_FIT,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	2,
+			validParms	=	(0-255), (0,1),
+			handler		=	ATCmd_FIT_Handler
+
++FKS:		cmdId		=	AT_CMD_FKS,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	1,
+			validParms	=	(?),
+			handler		=	ATCmd_FKS_Handler
+
++FK:		cmdId		=	AT_CMD_FK,			//	alias of +FKS
+			alias		=	AT_CMD_FKS
+
++FLI:		cmdId		=	AT_CMD_FLI,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	1,
+			validParms	=	(?),
+			handler		=	ATCmd_FLI_Handler
+
++FLID:		cmdId		=	AT_CMD_FLID,		//	alias of +FLI
+			alias		=	AT_CMD_FLI
+
++FPI:		cmdId		=	AT_CMD_FPI,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	1,
+			validParms	=	(?),
+			handler		=	ATCmd_FPI_Handler
+
++FCIG:		cmdId		=	AT_CMD_FCIG,		//	alias of +FPI
+			alias		=	AT_CMD_FPI
+
++FLP:		cmdId		=	AT_CMD_FLP,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	1,
+			validParms	=	(0,1),
+			handler		=	ATCmd_FLP_Handler
+
++FLPL:		cmdId		=	AT_CMD_FLPL,		//	alias of +FLP
+			alias		=	AT_CMD_FLP
+
++FMS:		cmdId		=	AT_CMD_FMS,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	1,
+			validParms	=	(0),
+			handler		=	ATCmd_FMS_Handler
+
++FMINSP:	cmdId		=	AT_CMD_FMINSP,		//	alias of +FMS
+			alias		=	AT_CMD_FMS
+
++FNR:		cmdId		=	AT_CMD_FNR,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	4,
+			validParms	=	(0,1),(0,1),(0,1),(0,1),
+			handler		=	ATCmd_FNR_Handler
+
++FPP:		cmdId		=	AT_CMD_FPP,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	1,
+			validParms	=	(0,1),
+			handler		=	ATCmd_FPP_Handler
+
++FPS:		cmdId		=	AT_CMD_FPS,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	1,
+			validParms	=	(1-5),
+			handler		=	ATCmd_FPS_Handler
+
++FPTS:		cmdId		=	AT_CMD_FPTS,		//	alias of +FPS
+			alias		=	AT_CMD_FPS
+
++FSP:		cmdId		=	AT_CMD_FSP,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	1,
+			validParms	=	(0),
+			handler		=	ATCmd_FSP_Handler
+
++FSPL:		cmdId		=	AT_CMD_FSPL,		//	alias of +FSP
+			alias		=	AT_CMD_FSP
+
++FPO:		cmdId		=	AT_CMD_FPO,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	1,
+			validParms	=	(?),
+			handler		=	ATCmd_FPO_Handler
+
++FCR:		cmdId		=	AT_CMD_FCR,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	1,
+			validParms	=	(0,1),
+			handler		=	ATCmd_FCR_Handler
+
++FRQ:		cmdId		=	AT_CMD_FRQ,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	2,
+			validParms	=	(0),(0),
+			handler		=	ATCmd_FRQ_Handler
+
++FRY:		cmdId		=	AT_CMD_FRY,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	1,
+			validParms	=	(0),
+			handler		=	ATCmd_FRY_Handler
+
++CMUX:		cmdId		=	AT_CMD_CMUX,
+			cmdType		=	extended,
+			minParms	=	1,
+			maxParms	=	9,
+			validParms	=	(0),(0),(1,5),(31-127),(10),(3),(30),(10),(1,7),
+			handler		=	ATCmd_CMUX_Handler,
+			options		=	NO_PIN | NO_PWR
+
++CSSN:		cmdId		=	AT_CMD_CSSN,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	2,
+			validParms	=	(0,1),(0,1),
+ 			handler		=	ATCmd_CSSN_Handler,
+ 			options		=	NO_PIN
+
++GCAP:		cmdId		=	AT_CMD_GCAP,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	0,
+			handler		=	ATCmd_GCAP_Handler,
+			options		=	NO_PIN
+
++CLAC:		cmdId		=	AT_CMD_CLAC,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	0,
+			handler		=	ATCmd_CLAC_Handler
+
++ES:		cmdId		=	AT_CMD_ES,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	3,
+			validParms	=	(1,4),(0,2,4),(1,2,6),
+			handler		=	ATCmd_ES_Handler,
+			options		=	NO_PIN
+
++DS:		cmdId		=	AT_CMD_DS,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	4,
+			validParms	=	(0-3),(0,1),(512-2048),(6-32),
+			handler		=	ATCmd_DS_Handler,
+			options		=	NO_PIN
+
++CHUP:		cmdId		=	AT_CMD_CHUP,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	0,
+			handler		=	ATCmd_CHUP_Handler,
+			options		=	NO_PIN
+
++ETBM:		cmdId		=	AT_CMD_ETBM,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	3,
+			validParms	=	(0-2),(0-2),(0-30),
+			handler		=	ATCmd_ETBM_Handler
+
++ER:		cmdId		=	AT_CMD_ER,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	1,
+			validParms	=	(0-3),
+			handler		=	ATCmd_ER_Handler,
+			options		=	NO_PIN
+
++DR:		cmdId		=	AT_CMD_DR,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	1,
+			validParms	=	(0,1),
+			handler		=	ATCmd_DR_Handler,
+			options		=	NO_PIN
+
++CMEC:		cmdId		=	AT_CMD_CMEC,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	3,
+			validParms	=	(0-2),(0-2),(0-2),
+			handler		=	ATCmd_CMEC_Handler
+
++CGDCONT:	cmdId		=	AT_CMD_CGDCONT,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	6,
+			validParms	=	(1-10),(?),(?),(?),(0,1),(0,1),
+			handler		=	ATCmd_CGDCONT_Handler,
+			options		= 	USER_DEFINED_TEST_RSP
+
++CGQREQ:	cmdId		=	AT_CMD_CGQREQ,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	6,
+			validParms	=	(1-10),(0-3),(0-4),(0-5),(0-9),(0-18,31),
+			handler		=	ATCmd_CGQREQ_Handler,
+			options		= 	USER_DEFINED_TEST_RSP
+
++CGQMIN:	cmdId		=	AT_CMD_CGQMIN,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	6,
+			validParms	=	(1-10),(0-3),(0-4),(0-5),(0-9),(0-18,31),
+			handler		=	ATCmd_CGQMIN_Handler,
+			options		= 	USER_DEFINED_TEST_RSP
+
++CGATT:		cmdId		=	AT_CMD_CGATT,
+			cmdType		=	extended,
+			minParms	=	1,
+			maxParms	=	1,
+			validParms	=	(0,1),
+			handler		=	ATCmd_CGATT_Handler
+
++CGACT:		cmdId		=	AT_CMD_CGACT,
+			cmdType		=	extended,
+			minParms	=	1,
+			maxParms	=	9,
+			validParms	=	(0,1),(1-10),(1-10),(1-10),(1-10),(1-10),(1-10),(1-10),(1-10),
+			handler		=	ATCmd_CGACT_Handler,
+			options		= 	USER_DEFINED_TEST_RSP
+
++CGDATA:	cmdId		=	AT_CMD_CGDATA,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	2,
+			validParms	=	("PPP"),(1-255),
+			handler		=	ATCmd_CGDATA_Handler,
+			options		= 	USER_DEFINED_TEST_RSP
+
++CGPADDR:	cmdId		=	AT_CMD_CGPADDR,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	10,
+			validParms	=	(1-10),(1-10),(1-10),(1-10),(1-10),(1-10),(1-10),(1-10),(1-10),(1-10),
+			handler		=	ATCmd_CGPADDR_Handler,
+			options		= 	USER_DEFINED_TEST_RSP
+
++CGCLASS:	cmdId		=	AT_CMD_CGCLASS,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	1,
+			validParms	=	(?),
+			handler		=	ATCmd_CGCLASS_Handler,
+			options		=	NO_PIN | NO_PWR	| USER_DEFINED_TEST_RSP
+
+
++CGREG:		cmdId		=	AT_CMD_CGREG,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	1,
+			validParms	=	(0-2),
+			handler		=	ATCmd_CGREG_Handler,
+			options		=	NO_PIN | NO_PWR
+
++CGEREP:	cmdId		=	AT_CMD_CGEREP,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	2,
+			validParms	=	(0-2),(0-1),
+			handler		=	ATCmd_CGEREP_Handler
+
+//R99 Only AT Command
+#if	defined(STACK_edge) || defined(STACK_wedge)
++CGDSCONT:	cmdId		=	AT_CMD_CGDSCONT,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	4,
+			validParms	=	(1-10),(1-10),(0,1),(0,1),
+			handler		=	ATCmd_CGDSCONT_Handler,
+			options		= 	USER_DEFINED_TEST_RSP
+
++CGEQREQ:	cmdId		=	AT_CMD_CGEQREQ,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	13,
+			validParms	=	(1-10),(0-4),(0-8640),(0-8640),(0-8640),(0-8640),(0-2),(0-1520),(?),(?),(0-3),(0-62),(0-3),
+			handler		=	ATCmd_CGEQREQ_Handler,
+			options		= 	USER_DEFINED_TEST_RSP
+
++CGEQMIN:	cmdId		=	AT_CMD_CGEQMIN,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	13,
+			validParms	=	(1-10),(0-4),(0-8640),(0-8640),(0-8640),(0-8640),(0-2),(0-153),(?),(?),(0-3),(0-62),(0-3),
+			handler		=	ATCmd_CGEQMIN_Handler,
+			options		= 	USER_DEFINED_TEST_RSP
+
++CGEQNEG:	cmdId		=	AT_CMD_CGEQNEG,
+			cmdType		=	extended,
+			minParms	=	1,
+			maxParms	=	10,
+			validParms	=	(1-10),(1-10),(1-10),(1-10),(1-10),(1-10),(1-10),(1-10),(1-10),(1-10),
+			handler		=	ATCmd_CGEQNEG_Handler,
+			options		= 	USER_DEFINED_TEST_RSP
+
++CGTFT:		cmdId		=	AT_CMD_CGTFT,
+			cmdType		=	extended,
+			minParms	=	1,
+			maxParms	=	10,
+			validParms	=	(1-10),(1-8),(0-255),(?),(0-255),(?),(?),(?),(?),(?),
+			handler		=	ATCmd_CGTFT_Handler,
+			options		= 	USER_DEFINED_TEST_RSP
+#endif
+
+#if !defined(STACK_wedge)
++CHSD:		cmdId		=	AT_CMD_CHSD,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	0,
+			handler		=	ATCmd_CHSD_Handler
+
++CHST:		cmdId		=	AT_CMD_CHST,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	2,
+			validParms	=	(0-4),(4,8,12),
+			handler		=	ATCmd_CHST_Handler
+
++CHSN:		cmdId		=	AT_CMD_CHSN,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	4,
+			validParms	=	(0-7),(0-4),(0-4),(0,4,8,12),
+			handler		=	ATCmd_CHSN_Handler
+
++CHSC:		cmdId		=	AT_CMD_CHSC,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	0,
+			handler		=	ATCmd_CHSC_Handler
+
++CHSR:		cmdId		=	AT_CMD_CHSR,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	1,
+			validParms	=	(0,1),
+			handler		=	ATCmd_CHSR_Handler
+#endif
+
++CMER:		cmdId		=	AT_CMD_CMER,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	5,
+			validParms	=	(0-3),(0),(0),(0,1),(0,1),
+			handler		=	ATCmd_CMER_Handler
+
++WS46:		cmdId		=	AT_CMD_WS46,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	1,
+			validParms	=	(12),
+			handler		=	ATCmd_WS46_Handler
+
++CPWC:		cmdId		=	AT_CMD_CPWC,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	2,
+			validParms	=	(1-5),(0-2),
+			handler		=	ATCmd_CPWC_Handler
+
++LOG:		cmdId		=	AT_CMD_LOG,
+			cmdType		=	extended,
+			minParms	=	1,
+			maxParms	=	1,
+			validParms	=	(0-1),
+			handler		=	ATCmd_LOG_Handler
+
++CGSMS:		cmdId		=	AT_CMD_CGSMS,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	1,
+			validParms	=	(0-3),
+			handler		=	ATCmd_CGSMS_Handler
+
+*MCNAP:		cmdId		=	AT_CMD_MCNAP,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	0,
+			handler		=	ATCmd_MCNAP_Handler
+
+*MCOLR:		cmdId		=	AT_CMD_MCOLR,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	0,
+			handler		=	ATCmd_MCOLR_Handler
+
+*MQCFI:		cmdId		=	AT_CMD_MQCFI,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	0,
+			handler		=	ATCmd_MQCFI_Handler,
+			options		=	USER_DEFINED_TEST_RSP
+
+*MQSC:		cmdId		=	AT_CMD_MQSC,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	0,
+			handler		=	ATCmd_MQSC_Handler,
+			options		=	NO_PIN | USER_DEFINED_TEST_RSP | WAIT_PIN_INIT
+
+*MQPIN:		cmdId		=	AT_CMD_MQPIN,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	0,
+			handler		=	ATCmd_MQPIN_Handler,
+			options		=	NO_PIN | USER_DEFINED_TEST_RSP | WAIT_PIN_INIT
+
+*MDNPN:		cmdId		=	AT_CMD_MDNPN,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	0,
+			handler		=	ATCmd_MDNPN_Handler
+
+*MFTD:		cmdId		=	AT_CMD_MFTD,
+			cmdType		=	extended,
+			minParms	=	1,
+			maxParms	=	4,
+			validParms	=	(0-2),(?),(?),(?),
+			handler		=	ATCmd_MFTD_Handler,
+			options		=	NO_PIN | NO_PWR
+
+*MQPV:		cmdId		=	AT_CMD_MQPV,
+			cmdType		=	extended,
+			minParms	=	1,
+			maxParms	=	1,
+			validParms	=	(0-3),
+			handler		=	ATCmd_MQPV_Handler,
+			options		=	NO_PIN | NO_PWR
+
+*MTEST:		cmdId		=	AT_CMD_MTEST,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	3,
+			validParms	=	(1-200),(?),(?),
+			handler		=	ATCmd_MTEST_Handler,
+			options		=	NO_PIN | NO_PWR
+
+*MPROF:		cmdId		=	AT_CMD_MPROF,
+			cmdType		=	extended,
+			minParms	=	1,
+			maxParms	=	1,
+			validParms	=	(0-2),
+			handler		=	ATCmd_MPROF_Handler
+
+*MSLEEP: 	cmdId		=	AT_CMD_MSLEEP,
+			cmdType		=	extended,
+			minParms	=	1,
+			maxParms	=	1,
+			validParms	=	(0-1),
+			handler		=	ATCmd_MSLEEP_Handler,
+			options		=	NO_PIN | NO_PWR
+			
+*MICID:		cmdId		=	AT_CMD_MICID,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	0,
+			handler		=	ATCmd_MICID_Handler,
+			options		= 	USER_DEFINED_TEST_RSP
+
+*CGSEND:	cmdId		=	AT_CMD_CGSEND,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	2,
+			validParms	=	(1-10),(1-10000000),
+			handler		=	ATCmd_CGSEND_Handler
+
+*MSCLASS:	cmdId		=	AT_CMD_MSCLASS,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	2,
+			validParms	=	(1-3),(1-12),
+			handler		=	ATCmd_MSCLASS_Handler,
+			options		=	NO_PIN | NO_PWR
+
+
+*MVERS:		cmdId		=	AT_CMD_MVERS,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	0,
+			handler		=	ATCmd_MVERS_Handler,
+			options		=	NO_PIN | NO_PWR
+
+*MGBAND:	cmdId		=	AT_CMD_MGBAND,
+			cmdType		=	extended,
+			minParms	=	1,
+			maxParms	=	1,
+			validParms	=	(0-2),
+			handler		=	ATCmd_MGBAND_Handler,
+			options		=	NO_PIN | NO_PWR 
+			
+*MTREPORT:	cmdId		=	AT_CMD_REPORT,
+ 			cmdType		=	extended,
+ 			minParms	=	1,
+ 			maxParms	=	2,
+ 			validParms	=	(0-2),(2-360),
+ 			handler		=	ATCmd_MeasReport_Handler,
+			options		=	NO_PIN
+
+*MRINFO:	cmdId		=	AT_CMD_MRINFO,
+ 			cmdType		=	extended,
+ 			minParms	=	1,
+ 			maxParms	=	1,
+ 			validParms	=	(0-1),
+ 			handler		=	ATCmd_MRINFO_Handler
+
+#ifdef GCXX_PC_CARD 
+
+*MCUSID:	cmdId		=	AT_CMD_MCUSID,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	0,
+			handler		=	ATCmd_MCUSID_Handler,
+			options		=	NO_PIN | USER_DEFINED_TEST_RSP
+
+*EBSE:		cmdId		=	AT_CMD_EBSE,
+			cmdType		=	extended,
+			minParms	=	1,
+			maxParms	=	1,
+			validParms	=	(0-6),
+			handler		=	ATCmd_EBSE_Handler,
+			options		=	NO_PIN
+
+*ESNU:		cmdId		=	AT_CMD_ESNU,
+			cmdType		=	extended,
+			minParms	=	2,
+			maxParms	=	3,
+			validParms	=	(?),(?),(129,145),
+			handler		=	ATCmd_ESNU_Handler,
+			options		= 	USER_DEFINED_TEST_RSP
+
+*EPRO:		cmdId		=	AT_CMD_EPRO,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	0,
+			handler		=	ATCmd_EPRO_Handler,	
+			options		= 	USER_DEFINED_TEST_RSP
+
+*ECAM:		cmdId		=	AT_CMD_ECAM,
+			cmdType		=	extended,
+			minParms	=	1,
+			maxParms	=	1,
+			validParms	=	(0,1),
+			handler		=	ATCmd_CAM_Handler,
+			options		=	NO_PIN
+
+*EPNR:		cmdId		=	AT_CMD_EPNR,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	3,
+			validParms	=	(?),(?),(?),
+			handler		=	ATCmd_EPNR_Handler,
+			options		= 	USER_DEFINED_TEST_RSP
+
+*EPNW:		cmdId		=	AT_CMD_EPNW,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	3,
+			validParms	=	(?),(0-2),(?),
+			handler		=	ATCmd_EPNW_Handler,
+			options		= 	USER_DEFINED_TEST_RSP
+
+*ESIMC:		cmdId		=	AT_CMD_ESIMC,
+			cmdType		=	extended,
+			minParms	=	1,
+			maxParms	=	1,
+			validParms	=	(0,1),
+			handler		=	ATCmd_ESIMC_Handler
+
+*ECIPC:		cmdId		=	AT_CMD_ECIPC,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	1,
+			validParms	=	(0-1),
+			handler		=	ATCmd_ECIPC_Handler
+
+*MSDNLD:	cmdId		=	AT_CMD_MSDNLD,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	0,
+			handler		=	ATCmd_MSDNLD_Handler,
+			options		=	NO_PIN | NO_PWR | USER_DEFINED_TEST_RSP
+
+#endif
+
+
+*MVCHN:		cmdId		=	AT_CMD_MVCHN,
+			cmdType		=	extended,
+			minParms	=	1,
+			maxParms	=	1,
+			validParms	=	(0,1),
+			handler		=	ATCmd_MVCHN_Handler
+		 
+
+*MSTTY:		cmdId		=	AT_CMD_MSTTY,
+			cmdType		=	extended,
+			minParms	=	1,
+			maxParms	=	1,
+			validParms	=	(0-1),
+			handler		=	ATCmd_MSTTY_Handler,
+			options		=	NO_PIN | NO_PWR 
+
+*MVMIND:	cmdId		=	AT_CMD_MVMIND,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	1,
+			validParms	=	(0-2),
+			handler		=	ATCmd_MVMIND_Handler
+
+*MVMSC:		cmdId		=	AT_CMD_MVMSC,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	4,
+			validParms	=	(1-4),(0-1),(?),(128,129,145),
+			handler		=	ATCmd_MVMSC_Handler
+
+
+//FIXME Temp move CHLD ,CLCC,VTS and Mkeytone to GC75 for testing
+
++CHLD:		cmdId		=	AT_CMD_CHLD,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	1,
+			validParms	=	(0,1,11-19,110-116,2,21-29,210,216,3,4),
+			handler		=	ATCmd_CHLD_Handler,
+			options		=	NO_PIN
+
++CLCC:		cmdId		=	AT_CMD_CLCC,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	0,
+			handler		=	ATCmd_CLCC_Handler
+
+
++VTD:		cmdId		=	AT_CMD_VTD,
+			cmdType		=	extended,
+			minParms	=	1,
+			maxParms	=	1,
+			validParms	=	(0-50),
+			handler		=	ATCmd_VTD_Handler
+
++VTS:		cmdId		=	AT_CMD_VTS,
+			cmdType		=	extended,
+			minParms	=	1,
+			maxParms	=	3,
+			validParms	=	(?),(0-500),(0,1),
+			handler		=	ATCmd_VTS_Handler,
+			options		=	USER_DEFINED_TEST_RSP | NO_PIN
+
+
+*MVTS:		cmdId		=	AT_CMD_MVTS,
+			cmdType		=	extended,
+			minParms	=	2,
+			maxParms	=	3,
+			validParms	=	(?),(0,1),(0,1),
+			handler		=	ATCmd_MVTS_Handler,
+			options		=	USER_DEFINED_TEST_RSP
+
+
+*MPCM:		cmdId		=	AT_CMD_MPCM,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	1,
+			validParms	=	(0,1),
+			handler		=	ATCmd_MPCM_Handler,
+			options		=	NO_PIN
+
+
+*MKEYTONE:      cmdId		=       AT_CMD_MKEYTONE,
+				cmdType		=       extended,
+				minParms	=       1,
+				maxParms	=       2,
+				validParms	=       (?), (0-500),
+				handler		=       ATCmd_MKEYTONE_Handler,
+				options		= 		USER_DEFINED_TEST_RSP
+
+
+
+#ifdef INCL_IRDA
+*IRDA:      cmdId       =   AT_CMD_IRDA,
+            cmdType     =   extended,
+            minParms    =   0,
+            maxParms    =   3,
+            validParms  =   (0-127), (0-127), (0-127),
+            handler     =   ATCmd_IRDA_Handler,
+            options     =   NO_PIN
+
+#endif //#ifdef INCL_IRDA
+
+
+#ifndef GCXX_PC_CARD 
+
+*MSNU:		cmdId		=	AT_CMD_ESNU,
+			cmdType		=	extended,
+			minParms	=	2,
+			maxParms	=	3,
+			validParms	=	(?),(?),(129,145),
+			handler		=	ATCmd_ESNU_Handler,
+			options		= 	USER_DEFINED_TEST_RSP
+
+*MQSPN:		cmdId		=	AT_CMD_EPRO,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	0,
+			handler		=	ATCmd_EPRO_Handler,	
+			options		= 	USER_DEFINED_TEST_RSP
+
+//	todo tbd fixme - the 'integFlags' keyword is no longer supported (1/9/2003);
+//	unimplemented commands must be 'commented out'
+
+*MBSEL:		cmdId		=	AT_CMD_MBSEL,
+			cmdType		=	extended,
+			minParms	=	1,
+			maxParms	=	1,
+#ifdef STACK_wedge
+			validParms	=	(0-8),
+#else
+			validParms	=	(0-6),
+#endif
+			handler		=	ATCmd_MBSEL_Handler,
+			options		=	NO_PIN
+
+*MCAM:		cmdId		=	AT_CMD_MCAM,
+			cmdType		=	extended,
+			minParms	=	1,
+			maxParms	=	1,
+			validParms	=	(0,1),
+			handler		=	ATCmd_CAM_Handler,
+			options		=	NO_PIN | NO_PWR
+
+
+*MQSSIG:	cmdId		=	AT_CMD_MQSSIG,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	0,
+			handler		=	ATCmd_MQSSIG_Handler,
+			options		=	NO_PIN 
+
+#endif
+
++CMUT:		cmdId		=	AT_CMD_CMUT,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	1,
+			validParms	=	(0-1),
+			handler		=	ATCmd_CMUT_Handler
+
++VGR:		cmdId		=	AT_CMD_VGR,
+			cmdType		=	extended,
+			minParms	=	1,
+			maxParms	=	1,
+			validParms	=	(0-9),
+			handler		=	ATCmd_VGR_Handler,
+			options		=	NO_PIN
+
++VGT:		cmdId		=	AT_CMD_VGT,
+			cmdType		=	extended,
+			minParms	=	1,
+			maxParms	=	1,
+			validParms	=	(0-9),
+			handler		=	ATCmd_VGT_Handler,
+			options		=	NO_PIN
+
++CUSD:		cmdId		=	AT_CMD_CUSD,
+			cmdType		=	extended,
+			minParms	=	1,
+			maxParms	=	3,
+			validParms	=	(0-2),(?),(0-255),
+			handler		=	ATCmd_CUSD_Handler
+
+
+*MPPPAUTH:	cmdId		=	AT_CMD_MPPPAUTH,
+			cmdType		=	extended,
+			minParms	=	1,
+			maxParms	=	1,
+			validParms	=	(0-3),
+			handler		=	ATCmd_MPPPAUTH_Handler
+
+*MCNFG:		cmdId		=	AT_CMD_MCNFG,
+			cmdType		=	extended,
+			minParms	=	2,
+			maxParms	=	3,
+			validParms	=	(1-255), (0-12), (0-255),
+			handler		=	ATCmd_MCNFG_Handler,
+			options		=	NO_PIN | NO_PWR
+
+*MSALS:		cmdId		=	AT_CMD_MSALS,
+			cmdType		=	extended,
+			minParms	=	1,
+			maxParms	=	1,
+			validParms	=	(0,1),
+			handler		=	ATCmd_MSALS_Handler,
+			options		= 	USER_DEFINED_TEST_RSP
+
+*MMGSR:		cmdId		=	AT_CMD_MMGSR,
+			cmdType		=	extended,
+			minParms	=	1,
+			maxParms	=	1,
+			validParms	=	(0-255),
+			handler		=	ATCmd_MMGSR_Handler
+
+*MMGQ:		cmdId		=	AT_CMD_MMGQ,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	1,
+			validParms	=	(1),
+			handler		=	ATCmd_MMGQ_Handler
+
+*MSTPTN:	cmdId		=	AT_CMD_MSTPTN,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	0,
+			handler		=	ATCmd_MSTPTN_Handler
+	
+
+
+// STK commands
+*MTRES:		cmdId		=	AT_CMD_MTRES,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	6,
+			validParms	=	(0-20),(?),(?),(?),(?),(?),
+			handler		=	ATCmd_MTRES_Handler
+
+*MEDL:		cmdId		=	AT_CMD_MEDL,
+			cmdType		=	extended,
+			minParms	=	1,
+			maxParms	=	2,
+			validParms	=	(0-3),(?),
+			handler		=	ATCmd_MEDL_Handler,
+			options		=	USER_DEFINED_TEST_RSP 
+
+*MTMENU:	cmdId		=	AT_CMD_MTMENU,
+			cmdType		=	extended,
+			minParms	=	0,
+			maxParms	=	2,
+			validParms	=	(1-255),(0,1),
+			handler		=	ATCmd_MTMENU_Handler
+
+*MTZ:		cmdId		= AT_CMD_MTZ,
+			cmdType		= extended,
+			minParms	= 0,
+			maxParms	= 2,
+			validParms	= (1-3),(0-1),
+			handler		= ATCmd_MTZ_Handler
+
+// Audio commands
+*MECNS:		cmdId		=	AT_CMD_MECNS,
+			cmdType		=	extended,
+			minParms	=	2,
+			maxParms	=	2,
+			validParms	=	(1-2),(0-1), 
+			handler		=	ATCmd_MECNS_Handler
+
+*MAUDTUNE:	cmdId		= AT_CMD_MAUDTUNE,
+			cmdType		= extended,
+			minParms	= 1,
+			maxParms	= 3,
+			validParms	= (0-9),(0-200),(?),
+			handler		= ATCmd_MAUDTUNE_Handler,
+			options		= NO_PIN | NO_PWR
+
+*MRESET:	cmdId		= AT_CMD_MRESET,
+			cmdType		= extended,
+			minParms	= 0,
+			maxParms	= 1,
+			handler		= ATCmd_MRESET_Handler,
+			options		= NO_PIN | NO_PWR
+
+
+#ifdef PLATFORM_TEST
+
+*MUSBTST:	cmdId		= AT_CMD_MUSBTST,
+			cmdType		= extended,
+			minParms	= 1,
+			maxParms	= 1,
+			handler		= ATCmd_MUSBTST_Handler,
+			options		= NO_PIN | NO_PWR
+
+
+
+
+*MLPBKIP:	cmdId		= AT_CMD_MLPBKIP,
+			cmdType		= extended,
+			minParms	= 1,
+			maxParms	= 5,
+			handler		= ATCmd_MLPBKIP_Handler
+
+*MEMDUMP:	cmdId		=	AT_CMD_MEMINFO,
+			cmdType		=	extended,
+			minParms	=	2,
+			maxParms	=	2,
+			handler		=	ATCmd_MEMDUMP_Handler,
+			options		=	NO_PIN | NO_PWR
+
+*MSOCKTST:	cmdId		= AT_CMD_MSOCKTST,
+			cmdType		= extended,
+			minParms	= 1,
+			maxParms	= 5,
+			validParms	= (0-4294967295),(?),(?),(?),(?),
+			handler		= ATCmd_MSOCKTST_Handler
+
+*MACCTTST:	cmdId		= AT_CMD_MACCTTST,
+			cmdType		= extended,
+			minParms	= 1,
+			maxParms	= 3,
+			validParms	= (0-255),(1-255),(?),
+			handler		= ATCmd_MACCTTST_Handler
+
+*MDSPTST:	cmdId		= AT_CMD_MDSPTST,
+			cmdType		= extended,
+			minParms	= 0,
+			maxParms	= 6,
+			handler		= ATCmd_MDSPTST_Handler,
+			options		= NO_PIN | NO_PWR
+
+*MLCDTST:	cmdId		= AT_CMD_MLCDTST,
+			cmdType		= extended,
+			minParms	= 0,
+			maxParms	= 6,
+			handler		= ATCmd_MLCDTST_Handler,
+			options		= NO_PIN | NO_PWR
+
+*MVMCSTST:	cmdId		= AT_CMD_MVMCSTST,
+			cmdType		= extended,
+			minParms	= 0,
+			maxParms	= 6,
+			handler		= ATCmd_MVMCSTST_Handler,
+			options		= NO_PIN | NO_PWR
+
+
+*MAUDTST:	cmdId		= AT_CMD_MAUDTST,
+			cmdType		= extended,
+			minParms	= 0,
+			maxParms	= 6,
+			handler		= ATCmd_MAUDTST_Handler,
+			options		= NO_PIN | NO_PWR
+
+
+*MCSDSTART:	cmdId		= AT_CMD_MCSDSTART,
+			cmdType		= extended,
+			minParms	= 1,
+			maxParms	= 4,
+			validParms	= (?),(1-255),(1-255),(0-1),
+			handler		= ATCmd_MCSDSTART_Handler,
+			options		= NO_PIN | NO_PWR
+
+
+*MCSDACCEPT: cmdId		= AT_CMD_MCSDACCEPT,
+			cmdType		= extended,
+			minParms	= 1,
+			maxParms	= 1,
+			handler		= ATCmd_MCSDACCEPT_Handler,
+			options		= NO_PIN | NO_PWR
+
+
+*MCSDSEND:	cmdId		= AT_CMD_MCSDSEND,
+			cmdType		= extended,
+			minParms	= 1,
+			maxParms	= 1,
+			handler		= ATCmd_MCSDSEND_Handler,
+			options		= NO_PIN | NO_PWR
+
+
+*MCSDSTOP:	cmdId		= AT_CMD_MCSDSTOP,
+			cmdType		= extended,
+			minParms	= 0,
+			maxParms	= 0,
+			handler		= ATCmd_MCSDSTOP_Handler,
+			options		= NO_PIN | NO_PWR
+
+*MCSDPARAM:	cmdId		= AT_CMD_MCSDPARAM,
+			cmdType		= extended,
+			minParms	= 1,
+			maxParms	= 2,
+			validParms	= (0-255),(1-255),
+			handler		= ATCmd_MCSDPARAM_Handler
+
+
+*MDEVTST:	cmdId		= AT_CMD_MDEVTST,
+			cmdType		= extended,
+			minParms	= 0,
+			maxParms	= 8,
+			handler		= ATCmd_MDEVTST_Handler,
+			options		= NO_PIN | NO_PWR
+
+*MPMUTST:	cmdId		= AT_CMD_MPMUTST,
+			cmdType		= extended,
+			minParms	= 0,
+			maxParms	= 8,
+			handler		= ATCmd_MPMUTST_Handler,
+			options		= NO_PIN | NO_PWR
+
+*MSIMTST:	cmdId		= AT_CMD_MSIMTST,
+			cmdType		= extended,
+			minParms	= 0,
+			maxParms	= 8,
+			handler		= ATCmd_MSIMTST_Handler,
+			options		= NO_PIN
+
+
+*F32TST:	cmdId		= AT_CMD_F32TST,
+			cmdType		= extended,
+			minParms	= 0,
+			maxParms	= 9,
+			handler		= ATCmd_F32TST_Handler,
+			options		= NO_PIN | NO_PWR
+
+*MPSEL:		cmdId		= AT_CMD_PSEL,
+			cmdType		= extended,
+			minParms	= 0,
+			maxParms	= 1,
+			validParms	= (?),
+			handler		= ATCmd_MPSEL_Handler
+
+*MTSTUSSD:	cmdId		= AT_CMD_TSTUSSD,
+			cmdType		= extended,
+			minParms	= 0,
+			maxParms	= 1,
+			validParms	= (0-2),
+			handler		= ATCmd_TST_USSD_Handler
+
+
+*MSTKRUNAT:	cmdId		= AT_CMD_STKRUNAT,
+			cmdType		= extended,
+			minParms	= 1,
+			maxParms	= 1,
+			validParms	= (?),
+			handler		= ATCmd_STKRunAT_Handler,
+			options     = NO_PIN | NO_PWR
+
+*MPLMNTST:	cmdId		= AT_CMD_MPLMNTST,
+			cmdType		= extended,
+			minParms	= 1,
+			maxParms	= 4,
+			validParms	= (0-7),(0-2),(?),(1-30),
+			handler		= ATCmd_MPLMNTST_Handler
+
+*DPROFTST:	cmdId		= AT_CMD_DPROFTST,
+			cmdType		= extended,
+			minParms	= 1,
+			maxParms	= 5,
+			validParms	= (0-2),(?),(?), (?),(?),
+			handler		= ATCmd_DPROFTST_Handler
+
+*VJC:	    cmdId		= AT_CMD_VJC,
+			cmdType		= extended,
+			minParms	= 1,												  
+			maxParms	= 1,
+			validParms	= (0-1),
+			handler		= ATCmd_VJC_Handler
+			
+			
+*MPDPTST:   cmdId		= AT_CMD_MPDPTST,
+			cmdType		= extended,
+			minParms	= 1,
+			maxParms	= 4,
+			validParms	= (?),(?),(?),(?),
+			handler		= ATCmd_MPDPTST_Handler 
+
+*MPCHRSP:   cmdId		= AT_CMD_MPCHRSP,
+			cmdType		= extended,
+			minParms	= 1,
+			maxParms	= 8,
+			validParms	= (?),(?),(?),(?),(?),(?),(?),(?),
+			handler		= ATCmd_MPCHRSP_Handler 
+
+#ifdef BLUETOOTH_INCLUDED
+*MBTTST:    cmdId       =   AT_CMD_MBTTST,
+            cmdType     =   extended,
+            minParms    =   0,
+            maxParms    =   3,
+            validParms  =   (0-127), (0-127), (0-127),
+            handler     =   ATCmd_MBTTST_Handler,
+            options     =   NO_PIN | NO_PWR
+#endif
+
+#ifdef FS_INCLUDED
+//
+//	The 'MFILETST' command tests the RAMDISK or FLASH filesystem.  
+//	Exactly one of 'FS_RAMDISK', 'FS_FLASH' or 'FS_NONE' must 
+//	must be defined.  If more than one is defined, an error will
+//	be generated, which is a GOOD thing.
+//
+#ifdef FS_RAMDISK
+
+*MFILETST:	cmdId		= AT_CMD_MFILETST,
+			cmdType		= extended,
+			minParms	= 0,
+			maxParms	= 0,
+			handler		= ATCmd_FS_RAMDISK_Handler,
+			options		= NO_PIN | NO_PWR
+
+#endif // FS_RAMDISK
+
+#ifdef FS_FLASH
+
+*MFILETST:	cmdId		= AT_CMD_MFILETST,
+			cmdType		= extended,
+			minParms	= 1,
+			maxParms	= 2,
+			handler		= ATCmd_FS_FLASH_Handler,
+			options		= NO_PIN | NO_PWR
+
+#endif // FS_FLASH
+
+#ifdef FLASH_NAND
+
+*MNANDTST:	cmdId		= AT_CMD_MNANDTST,
+			cmdType		= extended,
+			minParms	= 0,
+			maxParms	= 8,
+			handler		= ATCmd_MNANDTST_Handler,
+			options		= NO_PIN | NO_PWR
+
+#endif // #ifdef FLASH_NAND
+
+#endif // #ifdef FS_INCLUDED
+
+#endif // PLATFORM_TEST

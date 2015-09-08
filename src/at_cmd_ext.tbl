@@ -1,0 +1,31 @@
+//-----------------------------------------------------------------------------
+//
+//	at_cmd_ext.tbl - Extended AT Command Table
+//
+//	This is a sample extended AT command table.
+//
+//-----------------------------------------------------------------------------
+//
+//	demo command
+//
+//	Formats:
+//		AT*MDEMO=P1,P2,P3
+//		AT*MDEMO=?
+//		AT*MDEMO?
+//	Notes:
+//		P1 is an integer between 1 and 10 based on first field in validParms (1-10)
+//		P2 is either an integer or a double-quoted string based on 2nd field in validParms (?)
+//		P3 is enumerated, and must be one of ONE, TWO or THREE based on 3rd field 
+//			in validParms ("ONE","TWO","THREE")
+//
+//		P1, P2 and P3 are optional (based on minParms==0)
+//
+*MDEMO:			cmdId		=	AT_CMD_MDEMO,
+				cmdType		=	extended,
+				minParms	=	0,
+				maxParms	=	3,
+				validParms	=	(1-10),(?),("ONE","TWO","THREE"),
+				handler		=	ATCmd_MDEMO_Handler,
+				options		=	NO_PIN|NO_PWR
+
+
