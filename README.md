@@ -64,6 +64,7 @@ Hash Table Structure
 
 The hash table is implemented as an array of hash blocks:
 
+
 const AT_HashBlk_t atHashTbl [] = {
     hash-block-0,
     hash-block-1,
@@ -73,12 +74,15 @@ const AT_HashBlk_t atHashTbl [] = {
     .
     hash-entry-n
 } ;
+
 AT_HashBlk_t is a structure comprising two integers:
+
 
 typedef struct {
     UInt16 firstRow ;
     UInt16 nextBlock ; 
 }   AT_HashBlk_t ;
+
 The firstRow element is an index to the alphabetically-sorted list of commands.
 
 The nextBlock element is an index to the hash-table array itself. The high-order bit of nextBlock is reserved as a flag bit. This leaves the remaining 15 bits for indexing; therefore up to 2^15, or 32768 commands may be stored.
@@ -88,6 +92,7 @@ The symbol AT_ENDHASH is used to described bit 15 of nextBlock. Its use is descr
 In practice the number of AT commands will most likely never exceed the 15-bit limit. If more than 2^15 commands are required, firstRow and nextBlock can easily be increased to 32 bits.
 
 Using the sample command set, the following code is generated:
+
 
 const AT_HashBlk_t atHashTbl [] = {
 	{ 0, 4 } ,
@@ -100,4 +105,5 @@ const AT_HashBlk_t atHashTbl [] = {
 	{ 3, 0 } ,				//	XCC
 	{ 4, 0 | AT_ENDHASH } ,		//	XCD
 } ;
+
 AT_ENDHASH is set to the high-order bit of nextBlock; its use will be desribed shortly.
