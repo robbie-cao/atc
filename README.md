@@ -65,24 +65,24 @@ Hash Table Structure
 The hash table is implemented as an array of hash blocks:
 
 
-const AT_HashBlk_t atHashTbl [] = {
-    hash-block-0,
-    hash-block-1,
-    hash-block-2,
-    .
-    .
-    .
-    hash-entry-n
-} ;
-
+    const AT_HashBlk_t atHashTbl [] = {
+        hash-block-0,
+        hash-block-1,
+        hash-block-2,
+        .
+        .
+        .
+        hash-entry-n
+    } ;
+    
 AT_HashBlk_t is a structure comprising two integers:
 
 
-typedef struct {
-    UInt16 firstRow ;
-    UInt16 nextBlock ; 
-}   AT_HashBlk_t ;
-
+    typedef struct {
+        UInt16 firstRow ;
+        UInt16 nextBlock ; 
+    }   AT_HashBlk_t ;
+    
 The firstRow element is an index to the alphabetically-sorted list of commands.
 
 The nextBlock element is an index to the hash-table array itself. The high-order bit of nextBlock is reserved as a flag bit. This leaves the remaining 15 bits for indexing; therefore up to 2^15, or 32768 commands may be stored.
@@ -94,16 +94,16 @@ In practice the number of AT commands will most likely never exceed the 15-bit l
 Using the sample command set, the following code is generated:
 
 
-const AT_HashBlk_t atHashTbl [] = {
-	{ 0, 4 } ,
-	{ 0, 0 } ,				//	AA
-	{ 1, 2 | AT_ENDHASH } ,
-	{ 1, 0 } ,				//	ABB
-	{ 2, 0 | AT_ENDHASH } ,		//	ABC
-	{ 3, 3 | AT_ENDHASH } ,
-	{ 3, 2 | AT_ENDHASH } ,
-	{ 3, 0 } ,				//	XCC
-	{ 4, 0 | AT_ENDHASH } ,		//	XCD
-} ;
+    const AT_HashBlk_t atHashTbl [] = {
+    	{ 0, 4 } ,
+    	{ 0, 0 } ,				//	AA
+    	{ 1, 2 | AT_ENDHASH } ,
+    	{ 1, 0 } ,				//	ABB
+    	{ 2, 0 | AT_ENDHASH } ,		//	ABC
+    	{ 3, 3 | AT_ENDHASH } ,
+    	{ 3, 2 | AT_ENDHASH } ,
+    	{ 3, 0 } ,				//	XCC
+    	{ 4, 0 | AT_ENDHASH } ,		//	XCD
+    } ;
 
 AT_ENDHASH is set to the high-order bit of nextBlock; its use will be desribed shortly.
