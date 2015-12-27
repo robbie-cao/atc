@@ -12,7 +12,8 @@ Contents
 * Hash Table Structure 
 * Hash Search Rules 
 * Hash Search Example 
-* Overview
+
+## Overview
 
 This page describes the algorithm used by the AT Command Parser to identify AT commands.
 
@@ -28,16 +29,16 @@ The AT Command Parser employs a hash algorithm to quickly search the table of al
 
 The hash algorithm is efficient; the number of comparison operations is on the order of 2*N. For our representative command set, this reduces the number of comparisons to 8, a 25:1 reduction in processing time!
 
-Hash Search Principles
+## Hash Search Principles
 
 The following simple set of AT commands, comprising the AT Command Table, is useful for demonstrating the principles of the search algorithm:
 
 
-    ATA
-    ATAA
-    ATABCD
-    ATABEF
-    ATB
+    - ATA
+    - ATAA
+    - ATABCD
+    - ATABEF
+    - ATB
 
 Notes:
 
@@ -47,7 +48,7 @@ Notes:
 
 This AT Command Table can be described by the following topology:
 
-
+```
     >--+--A--+----------------------->  "A"
        |     |                  
        |     +--A-------------------->  "AA"
@@ -57,14 +58,15 @@ This AT Command Table can be described by the following topology:
        |                 +--E--+--F-->  "ABEF"
        |
        +--B-------------------------->  "B"
+```
 
 A search begins at the left-hand side of the map, and with the first character of the isolated command. At each node in the map (shown by +) a single-character comparison is made. If a character match is found the search continues along the associated path. If no character match is found the search terminates with a 'not-found' result.
 
-Hash Table Structure
+## Hash Table Structure
 
 The hash table is implemented as an array of hash blocks:
 
-
+```
     const AT_HashBlk_t atHashTbl [] = {
         hash-block-0,
         hash-block-1,
@@ -74,14 +76,16 @@ The hash table is implemented as an array of hash blocks:
         .
         hash-entry-n
     } ;
+```
     
 AT_HashBlk_t is a structure comprising two integers:
 
-
+```
     typedef struct {
         UInt16 firstRow ;
         UInt16 nextBlock ; 
     }   AT_HashBlk_t ;
+```
     
 The firstRow element is an index to the alphabetically-sorted list of commands.
 
@@ -93,7 +97,7 @@ In practice the number of AT commands will most likely never exceed the 15-bit l
 
 Using the sample command set, the following code is generated:
 
-
+```
     const AT_HashBlk_t atHashTbl [] = {
     	{ 0, 4 } ,
     	{ 0, 0 } ,				//	AA
@@ -105,5 +109,6 @@ Using the sample command set, the following code is generated:
     	{ 3, 0 } ,				//	XCC
     	{ 4, 0 | AT_ENDHASH } ,		//	XCD
     } ;
+```
 
 AT_ENDHASH is set to the high-order bit of nextBlock; its use will be desribed shortly.
